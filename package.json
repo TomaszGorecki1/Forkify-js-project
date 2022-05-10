@@ -1,0 +1,22 @@
+{
+  "name": "forkifyjsprojectfromcourse",
+  "version": "1.0.0",
+  "description": "Whole application is from Jonas Shmedtmann JS course, I am just learning",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "BIG-JS-PROJECT"
+  },
+  "keywords": [
+    "PROJECT"
+  ],
+  "author": "Tomasz Górecki",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.5.0",
+    "parcel": "^2.5.0"
+  }
+}
