@@ -29,9 +29,14 @@ const renderSpinner = function (parentEl) {
 
 const showRecipe = async function () {
   try {
+    // const id = window.location.hash.slice(1);
+    const id = `5ed6604591c37cdc054bc886`;
+
+    if (!id) return;
+
     renderSpinner(recipeContainer);
     const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
     const data = await res.json();
 
@@ -44,16 +49,18 @@ const showRecipe = async function () {
       id: recipe.id,
       title: recipe.title,
       publisher: recipe.publisher,
-      sourceUrl: recipe.sourceUrl_url,
+      sourceUrl: recipe.source_url,
       image: recipe.image_url,
       cookingTime: recipe.cooking_time,
-      ingeredients: recipe.ingeredients,
+      ingredients: recipe.ingredients,
     };
 
     console.log(recipe);
     const markup = `
         <figure class="recipe__fig">
-          <img src="${recipe.image}" alt="Tomato" class="recipe__img" />
+          <img src="${recipe.image}" alt="${
+      recipe.title
+    }" class="recipe__img" />
           <h1 class="recipe__title">
             <span>${recipe.title}</span>
           </h1>
@@ -108,7 +115,7 @@ const showRecipe = async function () {
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
 
-          ${recipe.ingeredients
+          ${recipe.ingredients
             .map(ing => {
               return `
               <li class="recipe__ingredient">
@@ -124,9 +131,6 @@ const showRecipe = async function () {
             `;
             })
             .join(``)}
-
-           
-         
         </div>
 
         <div class="recipe__directions">
@@ -155,4 +159,9 @@ const showRecipe = async function () {
     alert(err);
   }
 };
-showRecipe();
+
+const arr = [`hashchange`, `load`];
+arr.forEach(ev => window.addEventListener(ev, showRecipe));
+
+// window.addEventListener(`hashchange`, showRecipe());
+// window.addEventListener(`load`, showRecipe());
