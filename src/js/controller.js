@@ -14,10 +14,12 @@ const timeout = function (s) {
 
 // https://forkify-api.herokuapp.com/v2
 
+//PREPARING FOR MVC
+
 ///////////////////////////////////////
 
 const renderSpinner = function (parentEl) {
-  const markup = ` 
+  const markup = `
         <!-- <div class="spinner">
           <svg>
             <use href="${icons}.svg#icon-loader"></use>
